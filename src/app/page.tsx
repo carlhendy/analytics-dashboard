@@ -141,18 +141,30 @@ export default function Home() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-          <h1 className="text-3xl font-bold text-gray-900">Total Organic Dashboard</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Total Organic Dashboard</h1>
               <p className="mt-2 text-gray-600">GA4 sessions for {startDate} → {endDate}</p>
             </div>
             <div className="flex space-x-3">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                Connect GA4
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span>Connect GA4</span>
               </button>
-              <button className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                Select Property
+              <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span>Select Property</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
-              <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                Refresh
+              <button className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span>Refresh</span>
               </button>
             </div>
           </div>
@@ -167,31 +179,28 @@ export default function Home() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Traffic Weightings</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">{data?.sessions?.toLocaleString() || '31,500'}</div>
+            <div className="text-right">
+              <div className="text-3xl font-bold text-blue-600">{data?.sessions?.toLocaleString() || '31,500'}</div>
               <div className="text-sm text-gray-600">Total Sessions</div>
-              <div className="text-lg font-semibold text-blue-600">100.0%</div>
+              <div className="text-lg font-semibold text-gray-600">100.0%</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">{data?.organic?.toLocaleString() || '12,000'}</div>
-              <div className="text-sm text-gray-600">Organic</div>
-              <div className="text-lg font-semibold text-green-600">
+            <div className="text-right">
+              <div className="text-3xl font-bold text-green-600">
                 {data ? ((data.organic || 0) / (data.sessions || 1) * 100).toFixed(1) : '38.1'}%
               </div>
+              <div className="text-sm text-gray-600">{data?.organic?.toLocaleString() || '12,000'} sessions</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">{data?.paid?.toLocaleString() || '5,000'}</div>
-              <div className="text-sm text-gray-600">Paid</div>
-              <div className="text-lg font-semibold text-blue-600">
+            <div className="text-right">
+              <div className="text-3xl font-bold text-orange-500">
                 {data ? ((data.paid || 0) / (data.sessions || 1) * 100).toFixed(1) : '15.9'}%
               </div>
+              <div className="text-sm text-gray-600">{data?.paid?.toLocaleString() || '5,000'} sessions</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">{data?.other?.toLocaleString() || '14,500'}</div>
-              <div className="text-sm text-gray-600">Other</div>
-              <div className="text-lg font-semibold text-gray-600">
+            <div className="text-right">
+              <div className="text-3xl font-bold text-gray-600">
                 {data ? ((data.other || 0) / (data.sessions || 1) * 100).toFixed(1) : '46.0'}%
               </div>
+              <div className="text-sm text-gray-600">{data?.other?.toLocaleString() || '14,500'} sessions</div>
             </div>
           </div>
         </div>
@@ -202,25 +211,38 @@ export default function Home() {
           <div className="flex items-center space-x-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+              <div className="relative">
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+              <div className="relative">
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
             </div>
             <div className="flex items-end">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                {Math.ceil((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))} days selected
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>{Math.ceil((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))} days selected</span>
               </button>
             </div>
           </div>
@@ -237,165 +259,151 @@ export default function Home() {
                 <tr className="border-b border-gray-200">
                   <th className="text-left py-3 px-4 font-medium text-gray-900">CHANNEL</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-900">ORIGINAL GA4 DATA</th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-900">ALLOCATE TO ORGANIC %</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-900">CALCULATED RESULTS</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 <tr>
-                  <td className="py-3 px-4 font-medium text-gray-900">Direct</td>
+                  <td className="py-3 px-4 font-medium text-gray-900 flex items-center">
+                    <div className="w-3 h-3 bg-orange-500 rounded-full mr-3"></div>
+                    Direct
+                  </td>
                   <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">8,000</div>
                     <div className="text-sm text-gray-600">ORIGINAL SESSIONS</div>
                     <div className="text-sm text-gray-600">25.4% OF TOTAL</div>
                   </td>
                   <td className="py-3 px-4">
-                    <div className="mb-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <div className="slider-container">
-                        <input 
-                          type="range" 
-                          min="0" 
-                          max="100" 
-                          value={sliderValues.direct}
-                          onChange={(e) => handleSliderChange('direct', parseInt(e.target.value))}
-                          className="slider w-full" 
-                        />
-                        <div className="flex justify-between text-xs text-gray-500 mt-1">
-                          <span>0%</span>
-                          <span>50%</span>
-                          <span>100%</span>
-                        </div>
-                      </div>
-                      <div className="text-sm text-gray-600 font-medium">{sliderValues.direct}%</div>
+                    <div className="slider-container">
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="100" 
+                        value={sliderValues.direct}
+                        onChange={(e) => handleSliderChange('direct', parseInt(e.target.value))}
+                        className="slider w-full" 
+                      />
+                      <div className="text-sm text-gray-600 font-medium mt-1">{sliderValues.direct}%</div>
                     </div>
+                  </td>
+                  <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">{Math.round(8000 * sliderValues.direct / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
                     <div className="text-sm text-gray-600">{((8000 * sliderValues.direct / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-medium text-gray-900">Referral</td>
+                  <td className="py-3 px-4 font-medium text-gray-900 flex items-center">
+                    <div className="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                    Referral
+                  </td>
                   <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">3,000</div>
                     <div className="text-sm text-gray-600">ORIGINAL SESSIONS</div>
                     <div className="text-sm text-gray-600">9.5% OF TOTAL</div>
                   </td>
                   <td className="py-3 px-4">
-                    <div className="mb-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <div className="slider-container">
-                        <input 
-                          type="range" 
-                          min="0" 
-                          max="100" 
-                          value={sliderValues.referral}
-                          onChange={(e) => handleSliderChange('referral', parseInt(e.target.value))}
-                          className="slider w-full" 
-                        />
-                        <div className="flex justify-between text-xs text-gray-500 mt-1">
-                          <span>0%</span>
-                          <span>50%</span>
-                          <span>100%</span>
-                        </div>
-                      </div>
-                      <div className="text-sm text-gray-600 font-medium">{sliderValues.referral}%</div>
+                    <div className="slider-container">
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="100" 
+                        value={sliderValues.referral}
+                        onChange={(e) => handleSliderChange('referral', parseInt(e.target.value))}
+                        className="slider w-full" 
+                      />
+                      <div className="text-sm text-gray-600 font-medium mt-1">{sliderValues.referral}%</div>
                     </div>
+                  </td>
+                  <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">{Math.round(3000 * sliderValues.referral / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
                     <div className="text-sm text-gray-600">{((3000 * sliderValues.referral / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-medium text-gray-900">AI/LLM Referral</td>
+                  <td className="py-3 px-4 font-medium text-gray-900 flex items-center">
+                    <div className="w-3 h-3 bg-pink-500 rounded-full mr-3"></div>
+                    AI/LLM Referral
+                  </td>
                   <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">1,500</div>
                     <div className="text-sm text-gray-600">ORIGINAL SESSIONS</div>
                     <div className="text-sm text-gray-600">4.8% OF TOTAL</div>
                   </td>
                   <td className="py-3 px-4">
-                    <div className="mb-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <div className="slider-container">
-                        <input 
-                          type="range" 
-                          min="0" 
-                          max="100" 
-                          value={sliderValues.llm}
-                          onChange={(e) => handleSliderChange('llm', parseInt(e.target.value))}
-                          className="slider w-full" 
-                        />
-                        <div className="flex justify-between text-xs text-gray-500 mt-1">
-                          <span>0%</span>
-                          <span>50%</span>
-                          <span>100%</span>
-                        </div>
-                      </div>
-                      <div className="text-sm text-gray-600 font-medium">{sliderValues.llm}%</div>
+                    <div className="slider-container">
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="100" 
+                        value={sliderValues.llm}
+                        onChange={(e) => handleSliderChange('llm', parseInt(e.target.value))}
+                        className="slider w-full" 
+                      />
+                      <div className="text-sm text-gray-600 font-medium mt-1">{sliderValues.llm}%</div>
                     </div>
+                  </td>
+                  <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">{Math.round(1500 * sliderValues.llm / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
                     <div className="text-sm text-gray-600">{((1500 * sliderValues.llm / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-medium text-gray-900">Other</td>
+                  <td className="py-3 px-4 font-medium text-gray-900 flex items-center">
+                    <div className="w-3 h-3 bg-gray-600 rounded-full mr-3"></div>
+                    Other
+                  </td>
                   <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">1,500</div>
                     <div className="text-sm text-gray-600">ORIGINAL SESSIONS</div>
                     <div className="text-sm text-gray-600">4.8% OF TOTAL</div>
                   </td>
                   <td className="py-3 px-4">
-                    <div className="mb-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <div className="slider-container">
-                        <input 
-                          type="range" 
-                          min="0" 
-                          max="100" 
-                          value={sliderValues.other}
-                          onChange={(e) => handleSliderChange('other', parseInt(e.target.value))}
-                          className="slider w-full" 
-                        />
-                        <div className="flex justify-between text-xs text-gray-500 mt-1">
-                          <span>0%</span>
-                          <span>50%</span>
-                          <span>100%</span>
-                        </div>
-                      </div>
-                      <div className="text-sm text-gray-600 font-medium">{sliderValues.other}%</div>
+                    <div className="slider-container">
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="100" 
+                        value={sliderValues.other}
+                        onChange={(e) => handleSliderChange('other', parseInt(e.target.value))}
+                        className="slider w-full" 
+                      />
+                      <div className="text-sm text-gray-600 font-medium mt-1">{sliderValues.other}%</div>
                     </div>
+                  </td>
+                  <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">{Math.round(1500 * sliderValues.other / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
                     <div className="text-sm text-gray-600">{((1500 * sliderValues.other / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-medium text-gray-900">Unassigned</td>
+                  <td className="py-3 px-4 font-medium text-gray-900 flex items-center">
+                    <div className="w-3 h-3 bg-gray-400 rounded-full mr-3"></div>
+                    Unassigned
+                  </td>
                   <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">500</div>
                     <div className="text-sm text-gray-600">ORIGINAL SESSIONS</div>
                     <div className="text-sm text-gray-600">1.6% OF TOTAL</div>
                   </td>
                   <td className="py-3 px-4">
-                    <div className="mb-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <div className="slider-container">
-                        <input 
-                          type="range" 
-                          min="0" 
-                          max="100" 
-                          value={sliderValues.unassigned}
-                          onChange={(e) => handleSliderChange('unassigned', parseInt(e.target.value))}
-                          className="slider w-full" 
-                        />
-                        <div className="flex justify-between text-xs text-gray-500 mt-1">
-                          <span>0%</span>
-                          <span>50%</span>
-                          <span>100%</span>
-                        </div>
-                      </div>
-                      <div className="text-sm text-gray-600 font-medium">{sliderValues.unassigned}%</div>
+                    <div className="slider-container">
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="100" 
+                        value={sliderValues.unassigned}
+                        onChange={(e) => handleSliderChange('unassigned', parseInt(e.target.value))}
+                        className="slider w-full" 
+                      />
+                      <div className="text-sm text-gray-600 font-medium mt-1">{sliderValues.unassigned}%</div>
                     </div>
+                  </td>
+                  <td className="py-3 px-4">
                     <div className="text-lg font-semibold text-gray-900">{Math.round(500 * sliderValues.unassigned / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
                     <div className="text-sm text-gray-600">{((500 * sliderValues.unassigned / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
