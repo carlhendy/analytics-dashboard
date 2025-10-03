@@ -52,6 +52,20 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [startDate, setStartDate] = useState('2025-09-03');
   const [endDate, setEndDate] = useState('2025-10-03');
+  const [sliderValues, setSliderValues] = useState({
+    direct: 0,
+    referral: 0,
+    llm: 0,
+    other: 0,
+    unassigned: 0
+  });
+
+  const handleSliderChange = (channel: string, value: number) => {
+    setSliderValues(prev => ({
+      ...prev,
+      [channel]: value
+    }));
+  };
 
   const fetchData = useCallback(async (propertyId: string) => {
     setLoading(true);
@@ -237,12 +251,26 @@ export default function Home() {
                   <td className="py-3 px-4">
                     <div className="mb-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <input type="range" min="0" max="100" defaultValue="0" className="w-full" />
-                      <div className="text-sm text-gray-600">0%</div>
+                      <div className="slider-container">
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="100" 
+                          value={sliderValues.direct}
+                          onChange={(e) => handleSliderChange('direct', parseInt(e.target.value))}
+                          className="slider w-full" 
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>0%</span>
+                          <span>50%</span>
+                          <span>100%</span>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">{sliderValues.direct}%</div>
                     </div>
-                    <div className="text-lg font-semibold text-gray-900">0</div>
+                    <div className="text-lg font-semibold text-gray-900">{Math.round(8000 * sliderValues.direct / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
-                    <div className="text-sm text-gray-600">0.0% OF TOTAL</div>
+                    <div className="text-sm text-gray-600">{((8000 * sliderValues.direct / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
@@ -255,12 +283,26 @@ export default function Home() {
                   <td className="py-3 px-4">
                     <div className="mb-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <input type="range" min="0" max="100" defaultValue="0" className="w-full" />
-                      <div className="text-sm text-gray-600">0%</div>
+                      <div className="slider-container">
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="100" 
+                          value={sliderValues.referral}
+                          onChange={(e) => handleSliderChange('referral', parseInt(e.target.value))}
+                          className="slider w-full" 
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>0%</span>
+                          <span>50%</span>
+                          <span>100%</span>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">{sliderValues.referral}%</div>
                     </div>
-                    <div className="text-lg font-semibold text-gray-900">0</div>
+                    <div className="text-lg font-semibold text-gray-900">{Math.round(3000 * sliderValues.referral / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
-                    <div className="text-sm text-gray-600">0.0% OF TOTAL</div>
+                    <div className="text-sm text-gray-600">{((3000 * sliderValues.referral / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
@@ -273,12 +315,26 @@ export default function Home() {
                   <td className="py-3 px-4">
                     <div className="mb-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <input type="range" min="0" max="100" defaultValue="0" className="w-full" />
-                      <div className="text-sm text-gray-600">0%</div>
+                      <div className="slider-container">
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="100" 
+                          value={sliderValues.llm}
+                          onChange={(e) => handleSliderChange('llm', parseInt(e.target.value))}
+                          className="slider w-full" 
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>0%</span>
+                          <span>50%</span>
+                          <span>100%</span>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">{sliderValues.llm}%</div>
                     </div>
-                    <div className="text-lg font-semibold text-gray-900">0</div>
+                    <div className="text-lg font-semibold text-gray-900">{Math.round(1500 * sliderValues.llm / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
-                    <div className="text-sm text-gray-600">0.0% OF TOTAL</div>
+                    <div className="text-sm text-gray-600">{((1500 * sliderValues.llm / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
@@ -291,12 +347,26 @@ export default function Home() {
                   <td className="py-3 px-4">
                     <div className="mb-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <input type="range" min="0" max="100" defaultValue="0" className="w-full" />
-                      <div className="text-sm text-gray-600">0%</div>
+                      <div className="slider-container">
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="100" 
+                          value={sliderValues.other}
+                          onChange={(e) => handleSliderChange('other', parseInt(e.target.value))}
+                          className="slider w-full" 
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>0%</span>
+                          <span>50%</span>
+                          <span>100%</span>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">{sliderValues.other}%</div>
                     </div>
-                    <div className="text-lg font-semibold text-gray-900">0</div>
+                    <div className="text-lg font-semibold text-gray-900">{Math.round(1500 * sliderValues.other / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
-                    <div className="text-sm text-gray-600">0.0% OF TOTAL</div>
+                    <div className="text-sm text-gray-600">{((1500 * sliderValues.other / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
                 <tr>
@@ -309,16 +379,76 @@ export default function Home() {
                   <td className="py-3 px-4">
                     <div className="mb-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">ALLOCATE TO ORGANIC %</label>
-                      <input type="range" min="0" max="100" defaultValue="0" className="w-full" />
-                      <div className="text-sm text-gray-600">0%</div>
+                      <div className="slider-container">
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="100" 
+                          value={sliderValues.unassigned}
+                          onChange={(e) => handleSliderChange('unassigned', parseInt(e.target.value))}
+                          className="slider w-full" 
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>0%</span>
+                          <span>50%</span>
+                          <span>100%</span>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">{sliderValues.unassigned}%</div>
                     </div>
-                    <div className="text-lg font-semibold text-gray-900">0</div>
+                    <div className="text-lg font-semibold text-gray-900">{Math.round(500 * sliderValues.unassigned / 100).toLocaleString()}</div>
                     <div className="text-sm text-gray-600">ALLOCATED TO ORGANIC SESSIONS</div>
-                    <div className="text-sm text-gray-600">0.0% OF TOTAL</div>
+                    <div className="text-sm text-gray-600">{((500 * sliderValues.unassigned / 100) / 31500 * 100).toFixed(1)}% OF TOTAL</div>
                   </td>
                 </tr>
               </tbody>
             </table>
+          </div>
+          
+          {/* Summary Section */}
+          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-2">Allocation Summary</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-900">
+                  {(
+                    Math.round(8000 * sliderValues.direct / 100) +
+                    Math.round(3000 * sliderValues.referral / 100) +
+                    Math.round(1500 * sliderValues.llm / 100) +
+                    Math.round(1500 * sliderValues.other / 100) +
+                    Math.round(500 * sliderValues.unassigned / 100)
+                  ).toLocaleString()}
+                </div>
+                <div className="text-sm text-blue-700">Total Allocated to Organic</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600">
+                  {(
+                    ((
+                      Math.round(8000 * sliderValues.direct / 100) +
+                      Math.round(3000 * sliderValues.referral / 100) +
+                      Math.round(1500 * sliderValues.llm / 100) +
+                      Math.round(1500 * sliderValues.other / 100) +
+                      Math.round(500 * sliderValues.unassigned / 100)
+                    ) / 31500 * 100)
+                  ).toFixed(1)}%
+                </div>
+                <div className="text-sm text-green-700">Of Total Sessions</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-600">
+                  {(
+                    12000 + 
+                    Math.round(8000 * sliderValues.direct / 100) +
+                    Math.round(3000 * sliderValues.referral / 100) +
+                    Math.round(1500 * sliderValues.llm / 100) +
+                    Math.round(1500 * sliderValues.other / 100) +
+                    Math.round(500 * sliderValues.unassigned / 100)
+                  ).toLocaleString()}
+                </div>
+                <div className="text-sm text-gray-700">New Total Organic</div>
+              </div>
+            </div>
           </div>
         </div>
 
