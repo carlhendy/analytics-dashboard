@@ -6,68 +6,89 @@
 .slider {
   -webkit-appearance: none;
   appearance: none;
-  height: 8px;
-  border-radius: 4px;
-  background: #e5e7eb;
+  height: 6px;
+  border-radius: 3px;
+  background: #f3f4f6;
   outline: none;
-  transition: background 0.3s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #3b82f6;
   cursor: pointer;
   border: 2px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.15s ease;
 }
 
 .slider::-webkit-slider-thumb:hover {
   background: #2563eb;
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.slider::-webkit-slider-thumb:active {
+  transform: scale(0.95);
 }
 
 .slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #3b82f6;
   cursor: pointer;
   border: 2px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.15s ease;
 }
 
 .slider::-moz-range-thumb:hover {
   background: #2563eb;
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .slider::-moz-range-track {
-  height: 8px;
-  border-radius: 4px;
-  background: #e5e7eb;
+  height: 6px;
+  border-radius: 3px;
+  background: #f3f4f6;
   border: none;
 }
 
 /* Progress bar effect for slider */
 .slider-container {
   position: relative;
+  padding: 8px 0;
 }
 
 .slider-progress {
   position: absolute;
-  top: 0;
+  top: 8px;
   left: 0;
-  height: 8px;
-  border-radius: 4px;
+  height: 6px;
+  border-radius: 3px;
   background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
   pointer-events: none;
-  transition: width 0.3s ease;
+  transition: width 0.2s ease;
+  z-index: 1;
+}
+
+/* Focus states */
+.slider:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.slider:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.slider:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
